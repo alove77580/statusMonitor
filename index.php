@@ -465,6 +465,21 @@ unset($site); // 取消引用，避免后续问题
             color: #9ca3af;
         }
         
+        .site-url a {
+            color: inherit;
+            text-decoration: none;
+            transition: all 0.3s ease;
+        }
+        
+        .site-url a:hover {
+            color: var(--primary-color);
+            text-decoration: underline;
+        }
+        
+        [data-theme="dark"] .site-url a:hover {
+            color: var(--primary-color);
+        }
+        
         .badge {
             padding: 0.5rem 1rem;
             border-radius: 25px;
@@ -1125,7 +1140,11 @@ unset($site); // 取消引用，避免后续问题
                                     <div class="site-name"><?php echo htmlspecialchars($site['name']); ?></div>
                                 </td>
                                 <td>
-                                    <div class="site-url"><?php echo htmlspecialchars($site['url']); ?></div>
+                                    <div class="site-url">
+                                        <a href="<?php echo htmlspecialchars($site['url']); ?>" target="_blank" rel="noopener noreferrer" title="点击访问 <?php echo htmlspecialchars($site['url']); ?>">
+                                            <?php echo htmlspecialchars($site['url']); ?>
+                                        </a>
+                                    </div>
                                 </td>
                                 <td>
                                     <span class="badge bg-<?php echo $site['type'] == 'API' ? 'warning' : ($site['type'] == 'HTTPS' ? 'success' : 'info'); ?>">
@@ -1530,7 +1549,11 @@ unset($site); // 取消引用，避免后续问题
                             <div class="site-name">${escapeHtml(site.name)}</div>
                         </td>
                         <td>
-                            <div class="site-url">${escapeHtml(site.url)}</div>
+                            <div class="site-url">
+                                <a href="${escapeHtml(site.url)}" target="_blank" rel="noopener noreferrer" title="点击访问 ${escapeHtml(site.url)}">
+                                    ${escapeHtml(site.url)}
+                                </a>
+                            </div>
                         </td>
                         <td>
                             <span class="badge bg-${site.type == 'API' ? 'warning' : (site.type == 'HTTPS' ? 'success' : 'info')}">
