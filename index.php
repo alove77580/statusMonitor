@@ -469,11 +469,24 @@ unset($site); // 取消引用，避免后续问题
             color: inherit;
             text-decoration: none;
             transition: all 0.3s ease;
+            display: inline-flex;
+            align-items: center;
+        }
+        
+        .site-url a i {
+            font-size: 0.85rem;
+            opacity: 0.7;
+            transition: all 0.3s ease;
         }
         
         .site-url a:hover {
             color: var(--primary-color);
             text-decoration: underline;
+        }
+        
+        .site-url a:hover i {
+            opacity: 1;
+            transform: translateX(2px);
         }
         
         [data-theme="dark"] .site-url a:hover {
@@ -1142,7 +1155,7 @@ unset($site); // 取消引用，避免后续问题
                                 <td>
                                     <div class="site-url">
                                         <a href="<?php echo htmlspecialchars($site['url']); ?>" target="_blank" rel="noopener noreferrer" title="点击访问 <?php echo htmlspecialchars($site['url']); ?>">
-                                            <?php echo htmlspecialchars($site['url']); ?>
+                                            <i class="fas fa-external-link-alt me-1"></i><?php echo htmlspecialchars($site['url']); ?>
                                         </a>
                                     </div>
                                 </td>
@@ -1551,7 +1564,7 @@ unset($site); // 取消引用，避免后续问题
                         <td>
                             <div class="site-url">
                                 <a href="${escapeHtml(site.url)}" target="_blank" rel="noopener noreferrer" title="点击访问 ${escapeHtml(site.url)}">
-                                    ${escapeHtml(site.url)}
+                                    <i class="fas fa-external-link-alt me-1"></i>${escapeHtml(site.url)}
                                 </a>
                             </div>
                         </td>
