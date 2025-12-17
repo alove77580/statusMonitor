@@ -64,6 +64,13 @@ try {
                 $sendSuccess = sendBarkNotification($title, $body, $notificationConfig['bark_key']);
             } elseif ($notificationType == 'wechat_work' && !empty($notificationConfig['wechat_work_webhook'])) {
                 $sendSuccess = sendWechatWorkNotification($title, $body, $notificationConfig['wechat_work_webhook']);
+            } elseif ($notificationType == 'telegram' && !empty($notificationConfig['telegram_bot_token']) && !empty($notificationConfig['telegram_chat_id'])) {
+                $sendSuccess = sendTelegramNotification($title, $body, $notificationConfig['telegram_bot_token'], $notificationConfig['telegram_chat_id']);
+            } elseif ($notificationType == 'custom_webhook' && !empty($notificationConfig['custom_webhook'])) {
+                $method = $notificationConfig['custom_webhook_method'] ?? 'POST';
+                $headers = $notificationConfig['custom_webhook_headers'] ?? null;
+                $bodyTemplate = $notificationConfig['custom_webhook_body_template'] ?? null;
+                $sendSuccess = sendCustomWebhookNotification($title, $body, $result['status'], $notificationConfig['custom_webhook'], $method, $headers, $bodyTemplate);
             }
             
             if ($sendSuccess) {
